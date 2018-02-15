@@ -1,2 +1,6 @@
 # BookMyCourt
-IOS Team Rangnarok
+iOS Team Rangnarok
+## Authors
+### Revanth
+### Karthik
+### Ashok
