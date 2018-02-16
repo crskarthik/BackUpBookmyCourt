@@ -36,7 +36,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="mZ4-Lv-OIZ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="MyBookings" id="cJz-01-cap"/>
+                    <tabBarItem key="tabBarItem" title="MyBookings" image="icons8-account-25" id="cJz-01-cap"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="osQ-9R-CYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -52,7 +52,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="NewBooking" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="NewBooking" image="icons8-plus-24" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -68,7 +68,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="6le-Ea-PxE"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="h33-oM-0FU"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="icons8-services-25" id="h33-oM-0FU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pl6-It-98J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,6 +97,8 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="icons8-account-25" width="25" height="25"/>
+        <image name="icons8-plus-24" width="24" height="24"/>
+        <image name="icons8-services-25" width="25" height="25"/>
     </resources>
 </document>
