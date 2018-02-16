@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class NewBookingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
