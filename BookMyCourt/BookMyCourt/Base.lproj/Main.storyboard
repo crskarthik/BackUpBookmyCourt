@@ -244,22 +244,6 @@
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="tBk-T0-2yE">
-            <objects>
-                <viewController id="M34-gM-h1j" customClass="SettingsViewController" customModule="BookMyCourt" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="UxI-pN-bsb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="6le-Ea-PxE"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="icons8-services-25" id="h33-oM-0FU"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pl6-It-98J" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1422" y="353"/>
-        </scene>
         <!--My Booking View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -273,7 +257,6 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="teW-yp-eTk" kind="relationship" relationship="viewControllers" id="an5-yo-hdI"/>
-                        <segue destination="M34-gM-h1j" kind="relationship" relationship="viewControllers" id="92q-vc-9qX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -286,6 +269,5 @@
         <image name="icons8-account-25" width="25" height="25"/>
         <image name="icons8-calendar-25" width="25" height="25"/>
         <image name="icons8-plus-24" width="24" height="24"/>
-        <image name="icons8-services-25" width="25" height="25"/>
     </resources>
 </document>
