@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+class TimeSlot {
+    var timeSlotID:Int
+    var timing:String
+    
+    init(timeslot:Int,timing:String) {
+        self.timeSlotID = timeslot
+        self.timing = timing
+    }
+}
