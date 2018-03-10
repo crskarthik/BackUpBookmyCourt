@@ -15,6 +15,8 @@
 		3F563F4220378DAD009F8807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F563F4020378DAD009F8807 /* LaunchScreen.storyboard */; };
 		3F563F4D20378DAD009F8807 /* BookMyCourtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F563F4C20378DAD009F8807 /* BookMyCourtTests.swift */; };
 		3F563F5820378DAE009F8807 /* BookMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F563F5720378DAE009F8807 /* BookMyCourtUITests.swift */; };
+		3F9D26BD2053918F00B28002 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D26BC2053918F00B28002 /* UserModel.swift */; };
+		3F9D26BF205391B200B28002 /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D26BE205391B200B28002 /* BookingModel.swift */; };
 		731E15F220535D2800FA33B8 /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731E15F120535D2800FA33B8 /* BookingModel.swift */; };
 		73BEE1952037952F00136CF1 /* MyBookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE1942037952F00136CF1 /* MyBookingsViewController.swift */; };
 		73BEE1972037957200136CF1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE1962037957200136CF1 /* SettingsViewController.swift */; };
@@ -52,6 +54,8 @@
 		3F563F5320378DAE009F8807 /* BookMyCourtUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookMyCourtUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F563F5720378DAE009F8807 /* BookMyCourtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMyCourtUITests.swift; sourceTree = "<group>"; };
 		3F563F5920378DAE009F8807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F9D26BC2053918F00B28002 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		3F9D26BE205391B200B28002 /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
 		731E15F120535D2800FA33B8 /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
 		73BEE1942037952F00136CF1 /* MyBookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingsViewController.swift; sourceTree = "<group>"; };
 		73BEE1962037957200136CF1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 		3F563F3420378DAD009F8807 /* BookMyCourt */ = {
 			isa = PBXGroup;
 			children = (
+				3F9D26BB2053914500B28002 /* Models */,
 				3F563F3520378DAD009F8807 /* AppDelegate.swift */,
 				3F563F3720378DAD009F8807 /* AvailabilityViewController.swift */,
 				3F563F3920378DAD009F8807 /* NewBookingViewController.swift */,
@@ -135,6 +140,15 @@
 				3F563F5920378DAE009F8807 /* Info.plist */,
 			);
 			path = BookMyCourtUITests;
+			sourceTree = "<group>";
+		};
+		3F9D26BB2053914500B28002 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3F9D26BC2053918F00B28002 /* UserModel.swift */,
+				3F9D26BE205391B200B28002 /* BookingModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,11 +286,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F563F3A20378DAD009F8807 /* NewBookingViewController.swift in Sources */,
+				3F9D26BD2053918F00B28002 /* UserModel.swift in Sources */,
 				3F563F3620378DAD009F8807 /* AppDelegate.swift in Sources */,
 				73BEE1952037952F00136CF1 /* MyBookingsViewController.swift in Sources */,
 				73BEE1972037957200136CF1 /* SettingsViewController.swift in Sources */,
 				3F563F3820378DAD009F8807 /* AvailabilityViewController.swift in Sources */,
 				731E15F220535D2800FA33B8 /* BookingModel.swift in Sources */,
+				3F9D26BF205391B200B28002 /* BookingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
