@@ -15,6 +15,7 @@
 		3F563F4220378DAD009F8807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F563F4020378DAD009F8807 /* LaunchScreen.storyboard */; };
 		3F563F4D20378DAD009F8807 /* BookMyCourtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F563F4C20378DAD009F8807 /* BookMyCourtTests.swift */; };
 		3F563F5820378DAE009F8807 /* BookMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F563F5720378DAE009F8807 /* BookMyCourtUITests.swift */; };
+		731E15F220535D2800FA33B8 /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731E15F120535D2800FA33B8 /* BookingModel.swift */; };
 		73BEE1952037952F00136CF1 /* MyBookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE1942037952F00136CF1 /* MyBookingsViewController.swift */; };
 		73BEE1972037957200136CF1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE1962037957200136CF1 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,7 @@
 		3F563F5320378DAE009F8807 /* BookMyCourtUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookMyCourtUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F563F5720378DAE009F8807 /* BookMyCourtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMyCourtUITests.swift; sourceTree = "<group>"; };
 		3F563F5920378DAE009F8807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		731E15F120535D2800FA33B8 /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
 		73BEE1942037952F00136CF1 /* MyBookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingsViewController.swift; sourceTree = "<group>"; };
 		73BEE1962037957200136CF1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +114,7 @@
 				3F563F3E20378DAD009F8807 /* Assets.xcassets */,
 				3F563F4020378DAD009F8807 /* LaunchScreen.storyboard */,
 				3F563F4320378DAD009F8807 /* Info.plist */,
+				731E15F120535D2800FA33B8 /* BookingModel.swift */,
 			);
 			path = BookMyCourt;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				73BEE1952037952F00136CF1 /* MyBookingsViewController.swift in Sources */,
 				73BEE1972037957200136CF1 /* SettingsViewController.swift in Sources */,
 				3F563F3820378DAD009F8807 /* AvailabilityViewController.swift in Sources */,
+				731E15F220535D2800FA33B8 /* BookingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

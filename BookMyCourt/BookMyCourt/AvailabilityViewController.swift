@@ -12,14 +12,17 @@ class AvailabilityViewController: UIViewController,UITableViewDataSource,UITable
     let days = ["DAYS","Monday","Tuesday","Wednesday","Thrusday","Friday","Saturday","Sunday"]
     let availablity = ["STATUS","Available","Not Available","Available","Not Available","Available","Not Available","Available"]
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return days.count
+        return AppDelegate.model.Week.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "availabilityList")!
-        cell.textLabel?.text = days[indexPath.row]
+        cell.textLabel?.text = AppDelegate.model.Week[indexPath.row].description
         cell.detailTextLabel?.text = availablity[indexPath.row]
         return cell
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
     
     
