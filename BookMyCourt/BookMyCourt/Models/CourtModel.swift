@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+class Court{
+    var courtID:Int
+    var courtLocation:String
+    
+    init(courtID:Int,courtLocation:String) {
+        self.courtID = courtID
+        self.courtLocation = courtLocation
+    }
+}

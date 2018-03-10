@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+class Booking{
+    var bookingId:Int
+    var dateID:Date
+    var timeslot:TimeSlot
+    var court:Court
+    
+    init(bookingID:Int,dateID:Date,timeslot:TimeSlot,court:Court) {
+        self.bookingId = bookingID
+        self.dateID = dateID
+        self.timeslot = timeslot
+        self.court = court
+    }
+}

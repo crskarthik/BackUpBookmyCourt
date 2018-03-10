@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+class User {
+    var studentID:String
+    var phoneNumber:String
+    var rememberMe:Bool
+    var booking:Booking
+    
+    init(studentID:String,phoneNumber:String,rememberMe:Bool,booking:Booking) {
+        self.studentID = studentID
+        self.phoneNumber = phoneNumber
+        self.rememberMe = rememberMe
+        self.booking = booking
+    }
+}
