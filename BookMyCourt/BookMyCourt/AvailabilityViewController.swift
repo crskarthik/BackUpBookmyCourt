@@ -12,18 +12,20 @@ import Parse
 class AvailabilityViewController:  UIViewController,UITableViewDataSource,UITableViewDelegate {
     let days = ["DAYS","Monday","Tuesday","Wednesday","Thrusday","Friday","Saturday","Sunday"]
     let availablity = ["STATUS","Available","Not Available","Available","Not Available","Available","Not Available","Available"]
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return courts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Inside")
         let cell = tableView.dequeueReusableCell(withIdentifier: "availabilityList")!
-               print(courts.count)
         cell.textLabel?.text = "\(courts[indexPath.row].courtID)"
         cell.detailTextLabel?.text = courts[indexPath.row].CourtLocation
 
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        AppDelegate.loc=courts[indexPath.row].CourtLocation        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

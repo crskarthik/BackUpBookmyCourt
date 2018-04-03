@@ -10,7 +10,7 @@ import UIKit
 
 class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-    var bookings:[String] = ["Date 03/15/2018 14:30 Full court","Date 04/12/2018 13:30 Half court","Date 05/15/2018 9:30 Full court"]
+    var bookings:[String] = ["Date 03/15/2018 14:30 Right court","Date 04/12/2018 13:30 Left court","Date 05/15/2018 9:30 Centre court"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
