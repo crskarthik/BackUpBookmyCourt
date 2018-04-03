@@ -19,8 +19,6 @@
 		3F9D26C12053948200B28002 /* CourtModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D26C02053948200B28002 /* CourtModel.swift */; };
 		3F9D26C32053949800B28002 /* AvailabilityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D26C22053949800B28002 /* AvailabilityModel.swift */; };
 		3F9D26C5205394AE00B28002 /* TimeSlotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D26C4205394AE00B28002 /* TimeSlotModel.swift */; };
-		731B0A022072E500003958F4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731B0A012072E500003958F4 /* Parse.framework */; };
-		731B0A042072E51B003958F4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731B0A032072E51B003958F4 /* Bolts.framework */; };
 		731B0A062072E532003958F4 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 731B0A052072E531003958F4 /* libstdc++.6.tbd */; };
 		731B0A082072E544003958F4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 731B0A072072E544003958F4 /* libsqlite3.tbd */; };
 		731B0A0A2072E554003958F4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731B0A092072E554003958F4 /* AudioToolbox.framework */; };
@@ -28,6 +26,11 @@
 		731B0A0E2072E913003958F4 /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731B0A0D2072E913003958F4 /* BookingModel.swift */; };
 		73BEE1952037952F00136CF1 /* MyBookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE1942037952F00136CF1 /* MyBookingsViewController.swift */; };
 		73BEE1972037957200136CF1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE1962037957200136CF1 /* SettingsViewController.swift */; };
+		7946F72B2072FEFC00E3C9F8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7946F7292072FEFC00E3C9F8 /* Parse.framework */; };
+		7946F72C2072FEFC00E3C9F8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7946F72A2072FEFC00E3C9F8 /* Bolts.framework */; };
+		7946F72F2073080400E3C9F8 /* Sawyers Whitewash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */; };
+		7946F7302073080400E3C9F8 /* Sawyers Whitewash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */; };
+		7946F73120730F1500E3C9F8 /* Sawyers Whitewash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		731B0A0D2072E913003958F4 /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
 		73BEE1942037952F00136CF1 /* MyBookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingsViewController.swift; sourceTree = "<group>"; };
 		73BEE1962037957200136CF1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7946F7292072FEFC00E3C9F8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		7946F72A2072FEFC00E3C9F8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sawyers Whitewash.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +92,8 @@
 				731B0A0A2072E554003958F4 /* AudioToolbox.framework in Frameworks */,
 				731B0A082072E544003958F4 /* libsqlite3.tbd in Frameworks */,
 				731B0A062072E532003958F4 /* libstdc++.6.tbd in Frameworks */,
-				731B0A042072E51B003958F4 /* Bolts.framework in Frameworks */,
-				731B0A022072E500003958F4 /* Parse.framework in Frameworks */,
+				7946F72B2072FEFC00E3C9F8 /* Parse.framework in Frameworks */,
+				7946F72C2072FEFC00E3C9F8 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +140,7 @@
 			children = (
 				3F9D26BB2053914500B28002 /* Models */,
 				3F563F3520378DAD009F8807 /* AppDelegate.swift */,
+				7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */,
 				3F563F3720378DAD009F8807 /* AvailabilityViewController.swift */,
 				3F563F3920378DAD009F8807 /* NewBookingViewController.swift */,
 				3F563F3B20378DAD009F8807 /* Main.storyboard */,
@@ -183,6 +190,8 @@
 				731B0A092072E554003958F4 /* AudioToolbox.framework */,
 				731B0A072072E544003958F4 /* libsqlite3.tbd */,
 				731B0A052072E531003958F4 /* libstdc++.6.tbd */,
+				7946F72A2072FEFC00E3C9F8 /* Bolts.framework */,
+				7946F7292072FEFC00E3C9F8 /* Parse.framework */,
 				731B0A032072E51B003958F4 /* Bolts.framework */,
 				731B0A012072E500003958F4 /* Parse.framework */,
 			);
@@ -296,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7946F73120730F1500E3C9F8 /* Sawyers Whitewash.otf in Resources */,
 				3F563F4220378DAD009F8807 /* LaunchScreen.storyboard in Resources */,
 				3F563F3F20378DAD009F8807 /* Assets.xcassets in Resources */,
 				3F563F3D20378DAD009F8807 /* Main.storyboard in Resources */,
@@ -306,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7946F72F2073080400E3C9F8 /* Sawyers Whitewash.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7946F7302073080400E3C9F8 /* Sawyers Whitewash.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,11 +9,23 @@
 import Foundation
 
 class Court{
+
     var courtID:Int
-    var courtLocation:String
+    var CourtLocation:String
     
-    init(courtID:Int,courtLocation:String) {
+    init(courtID:Int,CourtLocation:String) {
         self.courtID = courtID
-        self.courtLocation = courtLocation
+        self.CourtLocation = CourtLocation
     }
+    init() {
+        self.courtID = 0
+        self.CourtLocation = ""
+    }
+
+        static func parseClassName() -> String
+        {
+        return "Court"
+        
+        }
+
 }
