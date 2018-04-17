@@ -16,4 +16,9 @@ class TimeSlot {
         self.timeSlotID = timeslot
         self.timing = timing
     }
+    init()
+    {
+        timeSlotID=0
+        timing=""
+    }
 }

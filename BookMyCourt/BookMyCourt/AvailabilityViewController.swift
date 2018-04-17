@@ -35,25 +35,27 @@ class AvailabilityViewController:  UIViewController,UITableViewDataSource,UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let query = PFQuery(className:"Court")
-        query.findObjectsInBackground {
-            (objects: [PFObject]?, error: Error?) -> Void in
-            if error == nil
-            {
-                for i in 0..<objects!.count{
-                    self.courts.append(Court(courtID: objects![i]["CourtID"] as! Int, CourtLocation: objects![i]["CourtLocation"] as! String))
-                }
-                
-                //                print(self.courts[0].CourtLocation+"-------")
-                self.courtsAvailabilityTV.reloadData()
-            }
-            else {
-                // Log details of the failure
-                print("Oops \(error!)")
-                
-            }
-            
-        }
+//        let query = PFQuery(className:"Court")
+//        query.findObjectsInBackground {
+//            (objects: [PFObject]?, error: Error?) -> Void in
+//            if error == nil
+//            {
+//                for i in 0..<objects!.count{
+//                    self.courts.append(Court(courtID: objects![i]["CourtID"] as! Int, CourtLocation: objects![i]["CourtLocation"] as! String))
+//                }
+//
+//                //                print(self.courts[0].CourtLocation+"-------")
+//                self.courtsAvailabilityTV.reloadData()
+//            }
+//            else {
+//                // Log details of the failure
+//                print("Oops \(error!)")
+//
+//            }
+//
+//        }
+        var d1=DataFetch()
+        d1.loadAvailabilityData()
     }
     @IBOutlet weak var courtsAvailabilityTV: UITableView!
     

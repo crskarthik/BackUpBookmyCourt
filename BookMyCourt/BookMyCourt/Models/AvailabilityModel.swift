@@ -11,13 +11,13 @@ import Foundation
 class  Availability{
     var dateID:Date
     var timeSlot:TimeSlot
-    var courtID:Int
+    var court:Court
     var isAvailable:Bool
     
-    init(dateID:Date,timeSlot:TimeSlot,courtID:Int,isAvailable:Bool) {
+    init(dateID:Date,timeSlot:TimeSlot,court:Court,isAvailable:Bool) {
         self.dateID = dateID
         self.timeSlot = timeSlot
-        self.courtID = courtID
+        self.court = court
         self.isAvailable = isAvailable
     }
 }
