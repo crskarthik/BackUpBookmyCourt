@@ -10,67 +10,91 @@ import UIKit
 import Parse
 
 class AvailabilityViewController:  UIViewController,UITableViewDataSource,UITableViewDelegate {
-    let days = ["DAYS","Monday","Tuesday","Wednesday","Thrusday","Friday","Saturday","Sunday"]
-    let availablity = ["STATUS","Available","Not Available","Available","Not Available","Available","Not Available","Available"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return courts.count
+        print("Inside table view\(AppDelegate.dfetch.getAvailabilities().count)")
+        return AppDelegate.dfetch.getAvailabilities().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "availabilityList")!
-        cell.textLabel?.text = "\(courts[indexPath.row].courtID)"
-        cell.detailTextLabel?.text = courts[indexPath.row].CourtLocation
-
+        cell.textLabel?.text=AppDelegate.dfetch.availabilities[indexPath.row].Timeslot
+        cell.detailTextLabel?.text=AppDelegate.dfetch.availabilities[indexPath.row].Court
+        if indexPath.row == AppDelegate.dfetch.getAvailabilities().count{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        AppDelegate.loc=courts[indexPath.row].CourtLocation        
+        AppDelegate.userSelectedAvailability=indexPath.row
+        AppDelegate.selectedSlotAvailabilityKey = AppDelegate.dfetch.availabilities[indexPath.row].objectId!
+        AppDelegate.selectedCourt = AppDelegate.dfetch.availabilities[indexPath.row].Court
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        self.courtsAvailabilityTV.setNeedsDisplay()
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        let query = PFQuery(className:"Court")
-//        query.findObjectsInBackground {
-//            (objects: [PFObject]?, error: Error?) -> Void in
-//            if error == nil
-//            {
-//                for i in 0..<objects!.count{
-//                    self.courts.append(Court(courtID: objects![i]["CourtID"] as! Int, CourtLocation: objects![i]["CourtLocation"] as! String))
-//                }
-//
-//                //                print(self.courts[0].CourtLocation+"-------")
-//                self.courtsAvailabilityTV.reloadData()
-//            }
-//            else {
-//                // Log details of the failure
-//                print("Oops \(error!)")
-//
-//            }
-//
-//        }
-        var d1=DataFetch()
-        d1.loadAvailabilityData()
+        AvailableDatePicketBTN.minimumDate=Date()
+        AvailableDatePicketBTN.maximumDate=Date().addingTimeInterval(604800)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        AppDelegate.dfetch.loadAvailabilityData(SelectedDate:  dateFormatter.string(from: Date()))
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        self.courtsAvailabilityTV.reloadData()
+        self.courtsAvailabilityTV.setNeedsDisplay()
+        print("View Did Load")
+        
     }
     @IBOutlet weak var courtsAvailabilityTV: UITableView!
     
-    var courts:[Court] = [];
-    var court:Court = Court();
     override func viewWillAppear(_ animated: Bool) {
+        AppDelegate.dfetch.loadAvailabilityData(SelectedDate:  AppDelegate.selectedDate)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        self.courtsAvailabilityTV.reloadData()
+        self.courtsAvailabilityTV.setNeedsDisplay()
+        self.btnAction(UIButton.self)
+        print("View Will appear\(AppDelegate.dfetch.getAvailabilities().count)")
         
     }
-
-
-
+    
+    @IBOutlet weak var Button: UIButton!
+    
+    @IBAction func btnAction(_ sender: Any) {
+        courtsAvailabilityTV.isHidden=false
+        AppDelegate.dfetch.loadAvailabilityData(SelectedDate: AppDelegate.selectedDate)
+        self.courtsAvailabilityTV.reloadData()
+    }
+    
+    @IBOutlet weak var AvailableDatePicketBTN: UIDatePicker!
+    
+    @IBAction func AvailabilitySelectionAction(_ sender: Any) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        AppDelegate.selectedDate = dateFormatter.string(from: AvailableDatePicketBTN.date)
+        AppDelegate.dfetch.loadAvailabilityData(SelectedDate: AppDelegate.selectedDate)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        DispatchQueue.main.async {
+        self.courtsAvailabilityTV.reloadData()
+        }
+        self.courtsAvailabilityTV.setNeedsDisplay()
+    }
+    @objc func loadList(){
+        //load data here
+        self.courtsAvailabilityTV.reloadData()
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 

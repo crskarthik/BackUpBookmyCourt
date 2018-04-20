@@ -9,68 +9,45 @@
 import Foundation
 import Parse
 class DataFetch{
-    var users:[User]
-    var courts:[Court]
+    var users:[Users]
     var availabilities:[Availability]
-    var timeslots:[TimeSlot]
-    var bookings:[Booking]
+    var temp:[Availability]=[]
     init() {
         users=[]
-        courts=[]
         availabilities=[]
-        timeslots=[]
-        bookings=[]
     }
-    func loadAvailabilityData(){
-        let query = PFQuery(className:"Availability")
-        query.findObjectsInBackground {(objects: [PFObject]?, error: Error?) -> Void
-            in
-            if error == nil
-            {
-                for availability in objects!{
-                    var newcourt:Court=Court()
-                    var newtimeslot:TimeSlot=TimeSlot()
-                    var date:Date = availability["DateID"] as! Date
-                    var isAvailable:Bool = (availability["isAvailable"] != nil)
-                    var objID:PFObject=availability["Court"] as! PFObject
-                    let query1 = PFQuery(className:"Court")
-                    query1.whereKey("objectId", equalTo: objID)
-                    query1.getObjectInBackground(withId: <#T##String#>)
-                    query1.findObjectsInBackground {(objects: [PFObject]?, error: Error?) -> Void
-                        in
-                        if error == nil
-                        {
-                            for court in objects!{
-                                newcourt=Court(courtID: court["CourtID"] as! Int,CourtLocation: court["CourtLocation"] as! String)
-                            }
-                        }
-                        else { // Log details of the failure
-                            
-                        }
-                        var objID1:String=availability["TimeSlot"] as! String
-                        let query2 = PFQuery(className:"TimeSlot")
-                        query2.whereKey("objectId", equalTo: objID1)
-                        query2.findObjectsInBackground {(objects: [PFObject]?, error: Error?) -> Void
-                            in
-                            if error == nil
-                            {
-                                for timeslot in objects!{
-                                    newtimeslot=TimeSlot(timeslot: timeslot["TimeSlotID"] as! Int,timing: timeslot["Timing"] as! String)
-                                }
-                            }
-                            else { // Log details of the failure
-                                
-                            }
-                            self.availabilities.append(Availability(dateID: date,timeSlot: newtimeslot,court: newcourt,isAvailable: isAvailable))
-                        }
-                        
-                        
-                    }
-                    
-                }
-                print(self.availabilities)
+    func loadAvailabilityData(SelectedDate date:String){
+        let query=PFQuery(className:"Availability")
+        query.whereKey("IsAvailable", equalTo: true)
+        query.whereKey("Date", equalTo:date)
+        query.findObjectsInBackground {(objects: [PFObject]?, error: Error?)-> Void in
+            if(error == nil){
+            self.availabilities=objects as! [Availability]
+            print("Inside Data Fetch \(self.availabilities.count)")
+            print("Date:\(date)")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                 
+            }else{
+                print(error!)
             }
         }
+        }
+    func loadUserData(){
+        let query=PFQuery(className:"Users")
+        query.whereKey("User_ID", equalTo:AppDelegate.user919)
+        query.whereKey("PhoneNumber", equalTo:AppDelegate.userPN)
+        query.findObjectsInBackground {(objects: [PFObject]?, error: Error?)-> Void in
+            self.users=objects as! [Users]
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+    }
+    
+
+    func getUserData() -> [Users] {
+        return users
+    }
+    func getAvailabilities() -> [Availability] {
+        return availabilities
     }
 }
+

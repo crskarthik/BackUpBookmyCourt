@@ -8,7 +8,7 @@
 
 import Foundation
 
-class  Availability{
+class  Availability1{
     var dateID:Date
     var timeSlot:TimeSlot
     var court:Court

@@ -13,19 +13,31 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    static var loc=""
-
+    static var userSelectedAvailability:Int = -1
+    static var dfetch=DataFetch()
+    static var user919:Int = 0
+    static var userPN:String = ""
+    static var selectedSlotAvailabilityKey = ""
+    static var selectedDate = ""
+    static var selectedCourt = ""
+    static var courtImages=[#imageLiteral(resourceName: "left"),#imageLiteral(resourceName: "center"),#imageLiteral(resourceName: "right")]
+    static var selectedBooking = ""
+//      static var dfetch:DataFetch=DataFetch.sharedDF()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let configuration = ParseClientConfiguration {
-            $0.applicationId = "MnEflPFKVW0f8YBisHoKccdizeNiVdrbY3EddY4C";
-            $0.clientKey = "LRZNhOsusktJWllnviImMgODh3lIXKgcpVfm6D42"
+            $0.applicationId = "PuY156nlXoSQsPawrk5CQEzv9YwuVglEGHrUSVBh";
+            $0.clientKey = "gCOgJ0cUP6m87HRTbGbeFkz5CdF9tS6FFt9ukOjO"
             $0.server = "https://parseapi.back4app.com"
         }
         Parse.initialize(with: configuration)        //saveInstallationObject() // ...   }
         return true
     }
-
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        Availability.registerSubclass()
+        Users.registerSubclass()
+        return true
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

@@ -10,7 +10,6 @@
 		3F563F3620378DAD009F8807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F563F3520378DAD009F8807 /* AppDelegate.swift */; };
 		3F563F3820378DAD009F8807 /* AvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F563F3720378DAD009F8807 /* AvailabilityViewController.swift */; };
 		3F563F3A20378DAD009F8807 /* NewBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F563F3920378DAD009F8807 /* NewBookingViewController.swift */; };
-		3F563F3D20378DAD009F8807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F563F3B20378DAD009F8807 /* Main.storyboard */; };
 		3F563F3F20378DAD009F8807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F563F3E20378DAD009F8807 /* Assets.xcassets */; };
 		3F563F4220378DAD009F8807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F563F4020378DAD009F8807 /* LaunchScreen.storyboard */; };
 		3F563F4D20378DAD009F8807 /* BookMyCourtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F563F4C20378DAD009F8807 /* BookMyCourtTests.swift */; };
@@ -32,6 +31,9 @@
 		7946F72F2073080400E3C9F8 /* Sawyers Whitewash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */; };
 		7946F7302073080400E3C9F8 /* Sawyers Whitewash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */; };
 		7946F73120730F1500E3C9F8 /* Sawyers Whitewash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */; };
+		797198512086E55100B59F64 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797198502086E55100B59F64 /* UsersModel.swift */; };
+		797198532086E68A00B59F64 /* AvailabilityModel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797198522086E68A00B59F64 /* AvailabilityModel1.swift */; };
+		79D923DC2087CBA8002DA1AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79D923DB2087CBA7002DA1AA /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +58,6 @@
 		3F563F3520378DAD009F8807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F563F3720378DAD009F8807 /* AvailabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityViewController.swift; sourceTree = "<group>"; };
 		3F563F3920378DAD009F8807 /* NewBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookingViewController.swift; sourceTree = "<group>"; };
-		3F563F3C20378DAD009F8807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F563F3E20378DAD009F8807 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F563F4120378DAD009F8807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F563F4320378DAD009F8807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,6 +84,9 @@
 		7946F7292072FEFC00E3C9F8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		7946F72A2072FEFC00E3C9F8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sawyers Whitewash.otf"; sourceTree = "<group>"; };
+		797198502086E55100B59F64 /* UsersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
+		797198522086E68A00B59F64 /* AvailabilityModel1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityModel1.swift; sourceTree = "<group>"; };
+		79D923DB2087CBA7002DA1AA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,8 +148,8 @@
 				3F563F3520378DAD009F8807 /* AppDelegate.swift */,
 				7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */,
 				3F563F3720378DAD009F8807 /* AvailabilityViewController.swift */,
+				79D923DB2087CBA7002DA1AA /* Main.storyboard */,
 				3F563F3920378DAD009F8807 /* NewBookingViewController.swift */,
-				3F563F3B20378DAD009F8807 /* Main.storyboard */,
 				73BEE1942037952F00136CF1 /* MyBookingsViewController.swift */,
 				73BEE1962037957200136CF1 /* SettingsViewController.swift */,
 				3F563F3E20378DAD009F8807 /* Assets.xcassets */,
@@ -177,11 +181,13 @@
 			isa = PBXGroup;
 			children = (
 				3F9D26BC2053918F00B28002 /* UserModel.swift */,
+				797198502086E55100B59F64 /* UsersModel.swift */,
 				3F9D26C02053948200B28002 /* CourtModel.swift */,
 				3F9D26C22053949800B28002 /* AvailabilityModel.swift */,
 				3F9D26C4205394AE00B28002 /* TimeSlotModel.swift */,
 				731B0A0D2072E913003958F4 /* BookingModel.swift */,
 				73ACD9DD20858B0100D33C0E /* DataFetch.swift */,
+				797198522086E68A00B59F64 /* AvailabilityModel1.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,7 +317,7 @@
 				7946F73120730F1500E3C9F8 /* Sawyers Whitewash.otf in Resources */,
 				3F563F4220378DAD009F8807 /* LaunchScreen.storyboard in Resources */,
 				3F563F3F20378DAD009F8807 /* Assets.xcassets in Resources */,
-				3F563F3D20378DAD009F8807 /* Main.storyboard in Resources */,
+				79D923DC2087CBA8002DA1AA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,9 +346,11 @@
 			files = (
 				3F9D26C5205394AE00B28002 /* TimeSlotModel.swift in Sources */,
 				3F563F3A20378DAD009F8807 /* NewBookingViewController.swift in Sources */,
+				797198512086E55100B59F64 /* UsersModel.swift in Sources */,
 				3F9D26BD2053918F00B28002 /* UserModel.swift in Sources */,
 				3F9D26C32053949800B28002 /* AvailabilityModel.swift in Sources */,
 				3F563F3620378DAD009F8807 /* AppDelegate.swift in Sources */,
+				797198532086E68A00B59F64 /* AvailabilityModel1.swift in Sources */,
 				73BEE1952037952F00136CF1 /* MyBookingsViewController.swift in Sources */,
 				73BEE1972037957200136CF1 /* SettingsViewController.swift in Sources */,
 				73ACD9DE20858B0100D33C0E /* DataFetch.swift in Sources */,
@@ -384,14 +392,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3F563F3B20378DAD009F8807 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3F563F3C20378DAD009F8807 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3F563F4020378DAD009F8807 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
