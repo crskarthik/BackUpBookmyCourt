@@ -54,10 +54,14 @@ class NewBookingViewController: UIViewController {
                     self.displayOKAlert(title: "Error!", message:"Invalid Phone Number")
                 }
                 else{
-                    let date = Date()
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MM/dd/yyyy" //Your date format
+                    dateFormatter.timeZone = TimeZone(abbreviation: "CST+0:00") //Current time zone
+                    let date = dateFormatter.date(from: AppDelegate.selectedDate)
+                    
                     let formatter = DateFormatter()
                     formatter.dateFormat = "MM/dd/yyyy"
-                    let result = formatter.string(from: date)
+                    let result = formatter.string(from: date!)
                     let userdata = PFObject(className: "Users")
                     userdata["User_ID"]=Int(Txt919Number.text!)!
                     userdata["PhoneNumber"]=TxtPhoneNumber.text
@@ -75,7 +79,7 @@ class NewBookingViewController: UIViewController {
                                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
                                     
                                     let eventStore = EKEventStore()
-                                    let startDate = date as NSDate
+                                    let startDate = date as! NSDate
                                     let endDate = startDate.addingTimeInterval(60 * 60) // One hour
                                     
                                     if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
