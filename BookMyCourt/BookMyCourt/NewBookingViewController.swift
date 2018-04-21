@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import EventKit
+
 class NewBookingViewController: UIViewController {
     
     @IBOutlet weak var Txt919Number: UITextField!
@@ -19,6 +21,9 @@ class NewBookingViewController: UIViewController {
     
     @IBOutlet weak var selectedSlot: UILabel!
     @IBOutlet weak var locationLBL: UILabel!
+    var savedEventId : String = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title="New Booking"
@@ -60,7 +65,7 @@ class NewBookingViewController: UIViewController {
                     userdata["Court"]=AppDelegate.selectedCourt
                     userdata.saveInBackground(block: { (success, error) -> Void in
                         if success{
-
+                            
                             let updateQuery = PFQuery(className: "Availability")
                             updateQuery.getObjectInBackground(withId: AppDelegate.selectedSlotAvailabilityKey) { (object, error) -> Void in
                                 if object != nil && error == nil{
@@ -68,6 +73,19 @@ class NewBookingViewController: UIViewController {
                                     object!.saveInBackground()
                                     self.displayOKAlert(title: "Success!", message:"Slot booked successfully \n \(result) \(self.selectedSlot.text!)")
                                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
+                                    
+                                    let eventStore = EKEventStore()
+                                    let startDate = date as NSDate
+                                    let endDate = startDate.addingTimeInterval(60 * 60) // One hour
+                                    
+                                    if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
+                                        eventStore.requestAccess(to: .event, completion: {
+                                            granted, error in
+                                            self.createEvent(eventStore: eventStore, title: "Basketball Game", startDate: startDate, endDate: endDate)
+                                        })
+                                    } else {
+                                        self.createEvent(eventStore: eventStore, title: "BasketBall Game", startDate: startDate, endDate: endDate)
+                                    }
                                 }
                                 else{
                                     print("Unable to update availability")
@@ -77,7 +95,7 @@ class NewBookingViewController: UIViewController {
                                     segueFlag=false
                                 }
                             }
-
+                            
                         }
                         else{
                             print("Error")
@@ -94,7 +112,7 @@ class NewBookingViewController: UIViewController {
             }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
-                return segueFlag
+        return segueFlag
     }
     @objc func loadList(){
         //load data here
@@ -102,7 +120,7 @@ class NewBookingViewController: UIViewController {
         AppDelegate.userPN=TxtPhoneNumber.text!
     }
     @IBOutlet weak var courtLocation: UILabel!
- 
+    
     func displayOKAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -119,6 +137,36 @@ class NewBookingViewController: UIViewController {
         
         let strDate = dateFormatter.string(from: datePicker.date)
         dateLabel.text = strDate
+    }
+    
+    // Creates an event in the EKEventStore. The method assumes the eventStore is created and
+    // accessible
+    func createEvent(eventStore: EKEventStore, title: String, startDate: NSDate, endDate: NSDate) {
+        let event = EKEvent(eventStore: eventStore)
+        
+        event.title = title
+        event.startDate = startDate as Date!
+        event.endDate = endDate as Date!
+        event.calendar = eventStore.defaultCalendarForNewEvents
+        do {
+            try eventStore.save(event, span: .thisEvent)
+            savedEventId = event.eventIdentifier
+        } catch {
+            print("Bad things happened")
+        }
+    }
+    
+    // Removes an event from the EKEventStore. The method assumes the eventStore is created and
+    // accessible
+    func deleteEvent(eventStore: EKEventStore, eventIdentifier: String) {
+        let eventToRemove = eventStore.event(withIdentifier: eventIdentifier)
+        if (eventToRemove != nil) {
+            do {
+                try eventStore.remove(eventToRemove!, span: .thisEvent)
+            } catch {
+                print("Bad things happened")
+            }
+        }
     }
     
 }
