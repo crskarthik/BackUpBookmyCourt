@@ -51,6 +51,7 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "delete"), object: nil)
         return AppDelegate.dfetch.getUserData().count
     }
     
@@ -80,6 +81,7 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
         }
         if indexPath.row == AppDelegate.dfetch.getUserData().count{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+            
         }
         return cell!
     }
@@ -97,11 +99,11 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
                 if(error==nil){
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
                     self.userBookingsTV.reloadData()
+                    self.ViewBookingsBTNAction(UIButton.self)
                 self.displayOKAlert(title: "Success!",message:"Delete successful")
                 }
             })
-            
- 
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
             self.userBookingsTV.reloadData()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "delete"), object: nil)
@@ -129,6 +131,7 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
         }else{
             self.displayOKAlert(title: "Error!", message:"Please enter all the fields to view reservations!")
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "delete"), object: nil)
         
     }
     func displayOKAlert(title: String, message: String) {
