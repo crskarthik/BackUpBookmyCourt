@@ -124,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				3F563F3420378DAD009F8807 /* BookMyCourt */,
-				3F563F4B20378DAD009F8807 /* BookMyCourtTests */,
 				3F563F5620378DAE009F8807 /* BookMyCourtUITests */,
 				3F563F3320378DAD009F8807 /* Products */,
 				731B0A002072E500003958F4 /* Frameworks */,
@@ -195,6 +194,7 @@
 		731B0A002072E500003958F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F563F4B20378DAD009F8807 /* BookMyCourtTests */,
 				731B0A0B2072E572003958F4 /* SystemConfiguration.framework */,
 				731B0A092072E554003958F4 /* AudioToolbox.framework */,
 				731B0A072072E544003958F4 /* libsqlite3.tbd */,
