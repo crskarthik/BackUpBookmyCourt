@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import EventKit
+import UserNotifications
 
 class NewBookingViewController: UIViewController {
     
@@ -28,6 +29,13 @@ class NewBookingViewController: UIViewController {
         super.viewDidLoad()
         self.title="New Booking"
         // Do any additional setup after loading the view, typically from a nib.
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
+            if error != nil {
+                print("Authorization Unsuccessfull")
+            }else {
+                print("Authorization Successfull")
+            }
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         selectedSlot.text=AppDelegate.dfetch.getAvailabilities()[AppDelegate.userSelectedAvailability].Timeslot
@@ -54,14 +62,6 @@ class NewBookingViewController: UIViewController {
                     self.displayOKAlert(title: "Error!", message:"Invalid Phone Number")
                 }
                 else{
-                    //let dateFormatter = DateFormatter()
-                    //dateFormatter.dateFormat = "MM/dd/yyyy HH:mm" //Your date format
-                    //dateFormatter.timeZone = TimeZone(abbreviation: "CST+0:00") //Current time zone
-                    //let date = dateFormatter.date(from: AppDelegate.selectedDate+" "+selectedSlot.text!)
-                    
-                    //let formatter = DateFormatter()
-                    //formatter.dateFormat = "MM/dd/yyyy"
-                    //let result = formatter.string(from: date!)
                     let userdata = PFObject(className: "Users")
                     userdata["User_ID"]=Int(Txt919Number.text!)!
                     userdata["PhoneNumber"]=TxtPhoneNumber.text
@@ -69,14 +69,19 @@ class NewBookingViewController: UIViewController {
                     userdata["Court"]=AppDelegate.selectedCourt
                     userdata.saveInBackground(block: { (success, error) -> Void in
                         if success{
-                            
                             let updateQuery = PFQuery(className: "Availability")
                             updateQuery.getObjectInBackground(withId: AppDelegate.selectedSlotAvailabilityKey) { (object, error) -> Void in
                                 if object != nil && error == nil{
                                     object!["IsAvailable"]=false
                                     object!.saveInBackground()
-                                    self.displayOKAlert(title: "Success!", message:"Slot booked successfully on \n \(AppDelegate.selectedCourt) Time:  \(self.selectedSlot.text!)")
+                                    self.displayOKAlert(title: "Success!", message:"Slot booked successfully on \n court: \(AppDelegate.selectedCourt) Time:  \(self.selectedSlot.text!) \n Date: \(AppDelegate.selectedDate)")
                                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
+                                    
+                                    self.timedNotifications(inSeconds: 15) { (success) in
+                                        if success {
+                                            print("Successfully Notified")
+                                        }
+                                    }
                                     
                                     let eventStore = EKEventStore()
                                     let dateFormatter = DateFormatter()
@@ -123,11 +128,13 @@ class NewBookingViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
         return segueFlag
     }
+    
     @objc func loadList(){
         //load data here
         AppDelegate.user919=Int(Txt919Number.text!)!
         AppDelegate.userPN=TxtPhoneNumber.text!
     }
+    
     @IBOutlet weak var courtLocation: UILabel!
     
     func displayOKAlert(title: String, message: String) {
@@ -136,16 +143,6 @@ class NewBookingViewController: UIViewController {
         AppDelegate.user919=Int(Txt919Number.text!)!
         AppDelegate.userPN=TxtPhoneNumber.text!
         self.present(alert, animated: true)
-    }
-    
-    @IBAction func datePickerChanged(_ sender: Any) {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        
-        let strDate = dateFormatter.string(from: datePicker.date)
-        dateLabel.text = strDate
     }
     
     // Creates an event in the EKEventStore. The method assumes the eventStore is created and
@@ -174,6 +171,24 @@ class NewBookingViewController: UIViewController {
                 try eventStore.remove(eventToRemove!, span: .thisEvent)
             } catch {
                 print("Bad things happened")
+            }
+        }
+    }
+    
+    func timedNotifications(inSeconds: TimeInterval, completion: @escaping (_ Success: Bool) -> ()) {
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: inSeconds, repeats: false)
+        let content = UNMutableNotificationContent()
+        content.title = "BookMyCourt"
+        content.subtitle = "Reservation Successfull"
+        content.body = "Slot booked successfully on  court: \(AppDelegate.selectedCourt) \n Time:  \(self.selectedSlot.text!) ; Date: \(AppDelegate.selectedDate)"
+        let request = UNNotificationRequest(identifier: "customNotification", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error != nil {
+                completion(false)
+            }else {
+                print("completed success")
+                completion(true)
             }
         }
     }
