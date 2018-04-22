@@ -54,18 +54,18 @@ class NewBookingViewController: UIViewController {
                     self.displayOKAlert(title: "Error!", message:"Invalid Phone Number")
                 }
                 else{
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "MM/dd/yyyy" //Your date format
-                    dateFormatter.timeZone = TimeZone(abbreviation: "CST+0:00") //Current time zone
-                    let date = dateFormatter.date(from: AppDelegate.selectedDate)
+                    //let dateFormatter = DateFormatter()
+                    //dateFormatter.dateFormat = "MM/dd/yyyy HH:mm" //Your date format
+                    //dateFormatter.timeZone = TimeZone(abbreviation: "CST+0:00") //Current time zone
+                    //let date = dateFormatter.date(from: AppDelegate.selectedDate+" "+selectedSlot.text!)
                     
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "MM/dd/yyyy"
-                    let result = formatter.string(from: date!)
+                    //let formatter = DateFormatter()
+                    //formatter.dateFormat = "MM/dd/yyyy"
+                    //let result = formatter.string(from: date!)
                     let userdata = PFObject(className: "Users")
                     userdata["User_ID"]=Int(Txt919Number.text!)!
                     userdata["PhoneNumber"]=TxtPhoneNumber.text
-                    userdata["Bookings"]=result+" "+selectedSlot.text!
+                    userdata["Bookings"]=AppDelegate.selectedDate+" "+selectedSlot.text!
                     userdata["Court"]=AppDelegate.selectedCourt
                     userdata.saveInBackground(block: { (success, error) -> Void in
                         if success{
@@ -75,12 +75,17 @@ class NewBookingViewController: UIViewController {
                                 if object != nil && error == nil{
                                     object!["IsAvailable"]=false
                                     object!.saveInBackground()
-                                    self.displayOKAlert(title: "Success!", message:"Slot booked successfully \n \(result) \(self.selectedSlot.text!)")
+                                    self.displayOKAlert(title: "Success!", message:"Slot booked successfully on \n \(AppDelegate.selectedCourt) Time:  \(self.selectedSlot.text!)")
                                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
                                     
                                     let eventStore = EKEventStore()
-                                    let startDate = date as! NSDate
-                                    let endDate = startDate.addingTimeInterval(60 * 60) // One hour
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "MM/dd/yyyy HH:mm" //Your date format
+                                    //dateFormatter.timeZone = TimeZone(abbreviation: "CST+0:00") //Current time zone
+                                    let timeString = self.selectedSlot.text!.components(separatedBy: "-")
+                                    let date = dateFormatter.date(from: AppDelegate.selectedDate+" "+timeString[0])
+                                    let startDate = date! as NSDate
+                                    let endDate = startDate.addingTimeInterval(30 * 60) // One hour
                                     
                                     if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
                                         eventStore.requestAccess(to: .event, completion: {

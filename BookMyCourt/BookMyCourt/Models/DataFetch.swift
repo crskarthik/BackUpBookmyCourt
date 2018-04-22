@@ -22,7 +22,7 @@ class DataFetch{
         query.whereKey("Date", equalTo:date)
         query.findObjectsInBackground {(objects: [PFObject]?, error: Error?)-> Void in
             if(error == nil){
-            self.availabilities=objects as! [Availability]
+            self.availabilities = objects as! [Availability]
             print("Inside Data Fetch \(self.availabilities.count)")
             print("Date:\(date)")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
@@ -47,7 +47,18 @@ class DataFetch{
         return users
     }
     func getAvailabilities() -> [Availability] {
-        return availabilities
+        var filteredAvailabilities:[Availability] = []
+        let todayDateTime = Date()
+        for avl in availabilities{
+            print(avl.AvailabilityDateTime)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy HH:mm" //Your date format
+            let avlDate = dateFormatter.date(from: avl.AvailabilityDateTime)
+            if avlDate?.compare(todayDateTime) == .orderedDescending {
+                filteredAvailabilities.append(avl)
+            }
+        }
+        return filteredAvailabilities
     }
 }
 
