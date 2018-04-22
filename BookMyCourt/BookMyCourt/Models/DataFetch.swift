@@ -59,15 +59,4 @@ class DataFetch{
         return filteredAvailabilities
     }
 }
-class ReplaceControllerSegue: UIStoryboardSegue {
-    override func perform() {
-        var mb:MyBookingsViewController=MyBookingsViewController()
-        var Av:AvailabilityViewController=AvailabilityViewController()
-        if let navigationController = mb.navigationController as UINavigationController? {
-            var controllers = navigationController.viewControllers
-            controllers.removeLast()
-            controllers.append(Av)
-            navigationController.setViewControllers(controllers, animated: true)
-        }
-    }
-}
+

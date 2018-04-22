@@ -14,8 +14,10 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var ui:AvailabilityViewController=AvailabilityViewController()
-        self.navigationController?.popToViewController(ui,animated: true)
+        var theControllers = [UIViewController]()
+        theControllers.append(self.navigationController!.viewControllers.first!)
+        theControllers.append(self.navigationController!.viewControllers.last!)
+        self.navigationController?.setViewControllers(theControllers, animated: false)
         self.title="View Bookings"
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
         AppDelegate.dfetch.loadUserData()
