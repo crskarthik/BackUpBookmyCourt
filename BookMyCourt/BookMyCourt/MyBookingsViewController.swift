@@ -14,6 +14,8 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var ui:AvailabilityViewController=AvailabilityViewController()
+        self.navigationController?.popToViewController(ui,animated: true)
         self.title="View Bookings"
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
         AppDelegate.dfetch.loadUserData()
@@ -25,6 +27,7 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
     @IBOutlet weak var TxtPNTF: UITextField!
     @IBOutlet weak var userBookingsTV: UITableView!
     override func viewWillAppear(_ animated: Bool) {
+        
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "delete"), object: nil)
         if(AppDelegate.userPN != "" && AppDelegate.userPN.count == 10 && String(AppDelegate.user919).count == 9){
@@ -93,16 +96,31 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            AppDelegate.selectedBooking = AppDelegate.dfetch.users[indexPath.row].objectId!
+            AppDelegate.selectedBooking = AppDelegate.dfetch.users[indexPath.row].Bookings
             AppDelegate.dfetch.users[indexPath.row].deleteInBackground(block:  {(success,error) in
                 
                 if(error==nil){
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
                     self.userBookingsTV.reloadData()
                     self.ViewBookingsBTNAction(UIButton.self)
-                self.displayOKAlert(title: "Success!",message:"Delete successful")
+                    var que1:PFQuery = PFQuery(className: "Availability")
+                    var cou=AppDelegate.dfetch.users[indexPath.row].Court
+                    print()
+                    que1.whereKey("objectId", equalTo: AppDelegate.dfetch.users[indexPath.row].AvailabilityID)
+                    que1.findObjectsInBackground(block: { (Objects: [PFObject]?, error:Error?) in
+                        for obj in Objects!{
+                           obj["IsAvailable"]=true
+                            obj.saveInBackground(block: { (success, error) -> Void in
+                             
+                           })
+                        }
+                    })
+                    
+                    
                 }
             })
+            
+            self.displayOKAlert(title: "Success!",message:"Delete successful")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
             self.userBookingsTV.reloadData()
         }
