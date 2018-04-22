@@ -13,6 +13,7 @@ class Users:PFObject, PFSubclassing {
     @NSManaged var PhoneNumber:String
     @NSManaged var Bookings:String
     @NSManaged var Court:String
+    @NSManaged var AvailabilityID:String
     
     static func parseClassName() -> String {
         return "Users"

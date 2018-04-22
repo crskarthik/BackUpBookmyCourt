@@ -67,6 +67,7 @@ class NewBookingViewController: UIViewController {
                     userdata["PhoneNumber"]=TxtPhoneNumber.text
                     userdata["Bookings"]=AppDelegate.selectedDate+" "+selectedSlot.text!
                     userdata["Court"]=AppDelegate.selectedCourt
+                    userdata["AvailabilityID"]=AppDelegate.selectedSlotAvailabilityKey
                     userdata.saveInBackground(block: { (success, error) -> Void in
                         if success{
                             let updateQuery = PFQuery(className: "Availability")
