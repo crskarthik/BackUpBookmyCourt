@@ -18,8 +18,8 @@ class AvailabilityViewController:  UIViewController,UITableViewDataSource,UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "availabilityList")!
-        cell.textLabel?.text=AppDelegate.dfetch.availabilities[indexPath.row].Timeslot
-        cell.detailTextLabel?.text=AppDelegate.dfetch.availabilities[indexPath.row].Court
+        cell.textLabel?.text=AppDelegate.dfetch.getAvailabilities()[indexPath.row].Timeslot
+        cell.detailTextLabel?.text=AppDelegate.dfetch.getAvailabilities()[indexPath.row].Court
         if indexPath.row == AppDelegate.dfetch.getAvailabilities().count{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         }
@@ -27,9 +27,9 @@ class AvailabilityViewController:  UIViewController,UITableViewDataSource,UITabl
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         AppDelegate.userSelectedAvailability=indexPath.row
-        AppDelegate.selectedSlotAvailabilityKey = AppDelegate.dfetch.availabilities[indexPath.row].objectId!
-        AppDelegate.selectedCourt = AppDelegate.dfetch.availabilities[indexPath.row].Court
-        
+        AppDelegate.selectedSlotAvailabilityKey = AppDelegate.dfetch.getAvailabilities()[indexPath.row].objectId!
+        AppDelegate.selectedCourt = AppDelegate.dfetch.getAvailabilities()[indexPath.row].Court
+        AppDelegate.selectedDate = AppDelegate.dfetch.getAvailabilities()[indexPath.row].Date
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.courtsAvailabilityTV.setNeedsDisplay()

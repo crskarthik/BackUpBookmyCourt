@@ -10,7 +10,7 @@ import Foundation
 import Parse
 class DataFetch{
     var users:[Users]
-    var availabilities:[Availability]
+    private var availabilities:[Availability]
     var temp:[Availability]=[]
     init() {
         users=[]
@@ -58,6 +58,8 @@ class DataFetch{
                 filteredAvailabilities.append(avl)
             }
         }
+        print("@@@@@@@@@@@@@@@@")
+        print(filteredAvailabilities)
         return filteredAvailabilities
     }
 }

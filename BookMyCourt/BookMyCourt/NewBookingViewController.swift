@@ -30,7 +30,7 @@ class NewBookingViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     override func viewWillAppear(_ animated: Bool) {
-        selectedSlot.text=AppDelegate.dfetch.availabilities[AppDelegate.userSelectedAvailability].Timeslot
+        selectedSlot.text=AppDelegate.dfetch.getAvailabilities()[AppDelegate.userSelectedAvailability].Timeslot
         dateLabel.text = AppDelegate.selectedDate
         courtLocation.text = AppDelegate.selectedCourt
     }

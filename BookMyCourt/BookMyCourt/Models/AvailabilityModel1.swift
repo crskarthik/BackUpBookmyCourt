@@ -15,6 +15,7 @@ class  Availability:PFObject, PFSubclassing{
     @NSManaged var IsAvailable:Bool
     @NSManaged var Court:String
     @NSManaged var AvailabilityDateTime:String
+    @NSManaged var Date:String
     
     static func parseClassName() -> String {
         return "Availability"
