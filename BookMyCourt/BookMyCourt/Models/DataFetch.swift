@@ -11,20 +11,18 @@ import Parse
 class DataFetch{
     var users:[Users]
     private var availabilities:[Availability]
-    var temp:[Availability]=[]
+    var temp:[Availability] = []
     init() {
-        users=[]
-        availabilities=[]
+        users = []
+        availabilities = []
     }
     func loadAvailabilityData(SelectedDate date:String){
-        let query=PFQuery(className:"Availability")
+        let query = PFQuery(className:"Availability")
         query.whereKey("IsAvailable", equalTo: true)
         query.whereKey("Date", equalTo:date)
         query.findObjectsInBackground {(objects: [PFObject]?, error: Error?)-> Void in
             if(error == nil){
             self.availabilities = objects as! [Availability]
-            print("Inside Data Fetch \(self.availabilities.count)")
-            print("Date:\(date)")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                 
             }else{
@@ -33,11 +31,11 @@ class DataFetch{
         }
         }
     func loadUserData(){
-        let query=PFQuery(className:"Users")
+        let query = PFQuery(className:"Users")
         query.whereKey("User_ID", equalTo:AppDelegate.user919)
         query.whereKey("PhoneNumber", equalTo:AppDelegate.userPN)
         query.findObjectsInBackground {(objects: [PFObject]?, error: Error?)-> Void in
-            self.users=objects as! [Users]
+            self.users = objects as! [Users]
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
@@ -46,11 +44,11 @@ class DataFetch{
     func getUserData() -> [Users] {
         return users
     }
+    
     func getAvailabilities() -> [Availability] {
         var filteredAvailabilities:[Availability] = []
         let todayDateTime = Date()
         for avl in availabilities{
-            print(avl.AvailabilityDateTime)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy HH:mm" //Your date format
             let avlDate = dateFormatter.date(from: avl.AvailabilityDateTime)
@@ -58,8 +56,6 @@ class DataFetch{
                 filteredAvailabilities.append(avl)
             }
         }
-        print("@@@@@@@@@@@@@@@@")
-        print(filteredAvailabilities)
         return filteredAvailabilities
     }
 }
