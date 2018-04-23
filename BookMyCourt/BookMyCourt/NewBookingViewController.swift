@@ -40,7 +40,7 @@ class NewBookingViewController: UIViewController {
         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
         do{
             let users = try AppDelegate.context.fetch(fetchRequest)
-            if users != nil && users != []{
+            if !users.isEmpty{
             self.Txt919Number.text=String(users[0].user_ID)
             self.TxtPhoneNumber.text=users[0].phoneNumber
                 self.Remember.setOn(true, animated: true)
@@ -119,14 +119,14 @@ class NewBookingViewController: UIViewController {
                                         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
                                         do{
                                             let users = try AppDelegate.context.fetch(fetchRequest)
-                                            if users != nil && users != []{
-                                                
-                                            }
-                                            else{
+                                            if users.isEmpty{
                                                 let user=CoreUser(context: AppDelegate.context)
                                                 user.user_ID=Int64(Int(self.Txt919Number.text!)!)
                                                 user.phoneNumber=self.TxtPhoneNumber.text
                                                 AppDelegate.saveContext()
+                                            }
+                                            else{
+                                                
                                             }
                                         }
                                         catch{
@@ -141,7 +141,7 @@ class NewBookingViewController: UIViewController {
                                         fetchRequest.predicate = NSCompoundPredicate(type:.and, subpredicates: [includesFirst, endsWithBlog] )
                                         do{
                                             let users = try AppDelegate.context.fetch(fetchRequest)
-                                            if users != nil && users != []{
+                                            if !users.isEmpty{
                                                 AppDelegate.context.delete(users.first!)
                                             }
                                         }
