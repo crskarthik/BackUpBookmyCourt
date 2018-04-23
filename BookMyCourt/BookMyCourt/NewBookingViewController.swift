@@ -68,10 +68,10 @@ class NewBookingViewController: UIViewController {
             if(Txt919Number.text!.count>0&&TxtPhoneNumber.text!.count>0){
                 AppDelegate.user919=Int(T919Num)!
                 AppDelegate.userPN=TxtPN
-                if(T919Num.prefix(3) != "919" || T919Num.count != 9){
+                if(!(Txt919Number.text?.isEmpty)! || T919Num.prefix(3) != "919" || T919Num.count != 9){
                     self.displayOKAlert(title: "Error!", message:"Invalid 919 Number")
                 }
-                else if(TxtPN.count != 10){
+                else if(!(TxtPhoneNumber.text?.isEmpty)! || TxtPN.count != 10){
                     self.displayOKAlert(title: "Error!", message:"Invalid Phone Number")
                 }
                 else{
@@ -176,8 +176,10 @@ class NewBookingViewController: UIViewController {
     func displayOKAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        AppDelegate.user919=Int(Txt919Number.text!)!
-        AppDelegate.userPN=TxtPhoneNumber.text!
+        if(!((TxtPhoneNumber.text?.isEmpty)!) || !((Txt919Number.text?.isEmpty)!)){
+            AppDelegate.user919=Int(Txt919Number.text!)!
+            AppDelegate.userPN=TxtPhoneNumber.text!
+        }
         self.present(alert, animated: true)
     }
     
@@ -226,6 +228,32 @@ class NewBookingViewController: UIViewController {
                 print("completed success")
                 completion(true)
             }
+        }
+    }
+    @IBOutlet weak var btnBook: UIButton!
+    
+    @IBAction func check919Number(_ sender: Any) {
+        let T919Num = Txt919Number.text!
+        let decimalCharacters = CharacterSet.letters
+        let decimalRange = T919Num.rangeOfCharacter(from: decimalCharacters)
+        if decimalRange != nil {
+            print("Letters found")
+            btnBook.isEnabled = false
+        }else{
+            btnBook.isEnabled = true
+        }
+    }
+    
+    
+    @IBAction func checkPhoneNumber(_ sender: Any) {
+        let TPNum = TxtPhoneNumber.text!
+        let decimalCharacters = CharacterSet.letters
+        let decimalRange = TPNum.rangeOfCharacter(from: decimalCharacters)
+        if decimalRange != nil {
+            print("Letters found")
+            btnBook.isEnabled = false
+        }else{
+            btnBook.isEnabled = true
         }
     }
     
