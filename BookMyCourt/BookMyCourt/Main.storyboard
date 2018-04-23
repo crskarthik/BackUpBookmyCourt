@@ -99,6 +99,7 @@
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="R66-t9-fpW">
                                 <rect key="frame" x="61" y="73" width="252" height="195"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <date key="date" timeIntervalSinceReferenceDate="545846540.71701896">
                                     <!--2018-04-19 16:02:20 +0000-->
                                 </date>
@@ -284,7 +285,7 @@
                                     <action selector="checkPhoneNumber:" destination="8rJ-Kc-sve" eventType="editingChanged" id="kG9-uX-4TG"/>
                                 </connections>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZeU-H7-Hka">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZeU-H7-Hka">
                                 <rect key="frame" x="193" y="380" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
@@ -423,6 +424,6 @@
         <image name="icons8-plus-24" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kt6-YR-hPm"/>
+        <segue reference="R71-IN-irG"/>
     </inferredMetricsTieBreakers>
 </document>

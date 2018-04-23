@@ -100,6 +100,12 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
             
         }
+        if(indexPath.row % 2 == 0){
+            cell?.backgroundColor = UIColor.darkGray
+        }
+        else{
+            cell?.backgroundColor = UIColor.lightGray
+        }
         return cell!
     }
     
