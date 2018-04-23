@@ -45,6 +45,11 @@ class NewBookingViewController: UIViewController {
             self.TxtPhoneNumber.text=users[0].phoneNumber
                 self.Remember.setOn(true, animated: true)
             }
+            else{
+              self.Txt919Number.text=""
+              self.TxtPhoneNumber.text=""
+              self.Remember.setOn(false, animated: true)
+            }
         }
         catch{
             
