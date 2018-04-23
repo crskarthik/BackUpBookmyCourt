@@ -117,68 +117,71 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
-            AppDelegate.selectedBooking = AppDelegate.dfetch.users[indexPath.row].Bookings
-            AppDelegate.dfetch.users[indexPath.row].deleteInBackground(block:  {(success,error) in
+            let refreshAlert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this booking?.", preferredStyle: UIAlertControllerStyle.alert)
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                print("Handle Ok logic here")
+                // handle delete (by removing the data from your array and updating the tableview)
+                AppDelegate.selectedBooking = AppDelegate.dfetch.users[indexPath.row].Bookings
+                AppDelegate.dfetch.users[indexPath.row].deleteInBackground(block:  {(success,error) in
+                    if(error==nil){
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
+                        self.userBookingsTV.reloadData()
+                        self.ViewBookingsBTNAction(UIButton.self)
+                        let que1:PFQuery = PFQuery(className: "Availability")
+                        var cou=AppDelegate.dfetch.users[indexPath.row].Court
+                        print()
+                        que1.whereKey("objectId", equalTo: AppDelegate.dfetch.users[indexPath.row].AvailabilityID)
+                        que1.findObjectsInBackground(block: { (Objects: [PFObject]?, error:Error?) in
+                            for obj in Objects!{
+                                obj["IsAvailable"]=true
+                                obj.saveInBackground(block: { (success, error) -> Void in
+                                    
+                                })
+                            }
+                        })
+                    }
+                })
                 
-                if(error==nil){
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
-                    self.userBookingsTV.reloadData()
-                    self.ViewBookingsBTNAction(UIButton.self)
-                    let que1:PFQuery = PFQuery(className: "Availability")
-                    var cou=AppDelegate.dfetch.users[indexPath.row].Court
-                    print()
-                    que1.whereKey("objectId", equalTo: AppDelegate.dfetch.users[indexPath.row].AvailabilityID)
-                    que1.findObjectsInBackground(block: { (Objects: [PFObject]?, error:Error?) in
-                        for obj in Objects!{
-                           obj["IsAvailable"]=true
-                            obj.saveInBackground(block: { (success, error) -> Void in
-                             
-                           })
+                // This lists every reminder
+                let eventStore : EKEventStore = EKEventStore()
+                let predicate = eventStore.predicateForReminders(in: [])
+                eventStore.fetchReminders(matching: predicate) { reminders in
+                    for reminder in reminders! {
+                        print(reminder.title)
+                    }}
+                // What about Calendar entries?
+                let startDate=NSDate().addingTimeInterval(-60*60*24)
+                let endDate=NSDate().addingTimeInterval(60*60*24*3)
+                let predicate2 = eventStore.predicateForEvents(withStart: startDate as Date, end: endDate as Date, calendars: nil)
+                print("startDate:\(startDate) endDate:\(endDate)")
+                let eV = eventStore.events(matching: predicate2) as [EKEvent]!
+                if eV != nil {
+                    for i in eV! {
+                        print("Title  \(i.title)" )
+                        print("stareDate: \(i.startDate)" )
+                        print("endDate: \(i.endDate)" )
+                        do{
+                            (try eventStore.remove(i, span: EKSpan.thisEvent, commit: true))
                         }
-                    })
-                    
-                    
-                }
-            })
-            
-            // This lists every reminder
-            let eventStore : EKEventStore = EKEventStore()
-            let predicate = eventStore.predicateForReminders(in: [])
-            eventStore.fetchReminders(matching: predicate) { reminders in
-                for reminder in reminders! {
-                    print(reminder.title)
-                }}
-            
-            
-            // What about Calendar entries?
-            let startDate=NSDate().addingTimeInterval(-60*60*24)
-            let endDate=NSDate().addingTimeInterval(60*60*24*3)
-            let predicate2 = eventStore.predicateForEvents(withStart: startDate as Date, end: endDate as Date, calendars: nil)
-            
-            print("startDate:\(startDate) endDate:\(endDate)")
-            let eV = eventStore.events(matching: predicate2) as [EKEvent]!
-            
-            if eV != nil {
-                for i in eV! {
-                    print("Title  \(i.title)" )
-                    print("stareDate: \(i.startDate)" )
-                    print("endDate: \(i.endDate)" )                    
-                    do{
-                        (try eventStore.remove(i, span: EKSpan.thisEvent, commit: true))
-                    }
-                    catch _ {
+                        catch _ {
+                        }
                     }
                 }
-            }
+                self.displayOKAlert(title: "Success!",message:"Delete successful")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
+                self.userBookingsTV.reloadData()
+            }))
             
-            self.displayOKAlert(title: "Success!",message:"Delete successful")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
-            self.userBookingsTV.reloadData()
+            refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("Handle Cancel Logic here")
+                NotificationCenter.default.addObserver(self, selector: #selector(self.loadList), name: NSNotification.Name(rawValue: "delete"), object: nil)
+                AppDelegate.dfetch.loadUserData()
+            }))
+            
+            present(refreshAlert, animated: true, completion: nil)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "delete"), object: nil)
         AppDelegate.dfetch.loadUserData()
-        
     }
     
     @IBAction func ViewBookingsBTNAction(_ sender: Any) {

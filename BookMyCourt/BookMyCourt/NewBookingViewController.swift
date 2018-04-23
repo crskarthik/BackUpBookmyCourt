@@ -220,8 +220,10 @@ class NewBookingViewController: UIViewController {
     
     @objc func loadList(){
         //load data here
-        AppDelegate.user919=Int(Txt919Number.text!)!
-        AppDelegate.userPN=TxtPhoneNumber.text!
+        if(!((TxtPhoneNumber.text?.isEmpty)!) || !((Txt919Number.text?.isEmpty)!)){
+            AppDelegate.user919=Int(Txt919Number.text!)!
+            AppDelegate.userPN=TxtPhoneNumber.text!
+        }
     }
     
     @IBOutlet weak var courtLocation: UILabel!
