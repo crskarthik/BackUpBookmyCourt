@@ -125,7 +125,7 @@ class NewBookingViewController: UIViewController {
                                         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
                                         do{
                                             let users = try AppDelegate.context.fetch(fetchRequest)
-                                            if users.isEmpty || users[0].user_ID==0{
+                                            if users.isEmpty{
                                                 let user=CoreUser(context: AppDelegate.context)
                                                 user.user_ID=Int64(Int(self.Txt919Number.text!)!)
                                                 user.phoneNumber=self.TxtPhoneNumber.text
