@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import CoreData
 class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     var bookings:[String] = ["Date 03/15/2018 14:30 Right court","Date 04/12/2018 13:30 Left court","Date 05/15/2018 9:30 Centre court"]
@@ -22,6 +23,17 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
         AppDelegate.dfetch.loadUserData()
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
+        do{
+            let users = try AppDelegate.context.fetch(fetchRequest)
+            if users != nil && users != []{
+                self.Txt919TF.text=String(users[0].user_ID)
+                self.TxtPNTF.text=users[0].phoneNumber
+            }
+        }
+        catch{
+            
+        }
         
         // Do any additional setup after loading the view.
     }
