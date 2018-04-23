@@ -142,19 +142,17 @@ class NewBookingViewController: UIViewController {
                                     if self.Remember.isOn{
                                         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
                                         do{
-                                            let users = try AppDelegate.context.fetch(fetchRequest)
-                                            if users != nil && users == []{
-                                                
+                                            var users = try AppDelegate.context.fetch(fetchRequest)
+                                            if users != nil && users != []{
                                                 self.Txt919Number.text=""
                                                 self.TxtPhoneNumber.text=""
-                                                let user=CoreUser(context: AppDelegate.context)
                                                 let context = AppDelegate.context
-                                                let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CoreUser")
-                                                let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
                                                 do
                                                 {
-                                                    try context.execute(deleteRequest)
+                                                    for _ in 0..<users.count{
+                                                        context.delete(users.first!)
                                                     try context.save()
+                                                    }
                                                 }
                                                 catch
                                                 {
