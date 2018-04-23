@@ -247,6 +247,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="check919Number:" destination="8rJ-Kc-sve" eventType="editingChanged" id="5yB-cv-hVV"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReZ-c8-Xaw">
                                 <rect key="frame" x="41" y="326" width="115" height="21"/>
@@ -261,6 +264,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="checkPhoneNumber:" destination="8rJ-Kc-sve" eventType="editingChanged" id="kG9-uX-4TG"/>
+                                </connections>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZeU-H7-Hka">
                                 <rect key="frame" x="193" y="380" width="49" height="31"/>
@@ -358,6 +364,7 @@
                         <outlet property="LblMessage" destination="C7S-Kg-Hp7" id="wSv-ry-ftF"/>
                         <outlet property="Txt919Number" destination="k6i-WG-3t7" id="wuW-Ts-Xij"/>
                         <outlet property="TxtPhoneNumber" destination="Dis-02-Xd7" id="IwA-JA-sNX"/>
+                        <outlet property="btnBook" destination="lmi-b2-Tpy" id="C3y-xR-Npu"/>
                         <outlet property="courtLocation" destination="psH-Qg-RB8" id="5xd-8S-KRM"/>
                         <outlet property="dateLabel" destination="wBJ-oB-Sz3" id="0XI-nk-7FV"/>
                         <outlet property="locationLBL" destination="CFW-1b-5Yg" id="JPT-k8-dmz"/>

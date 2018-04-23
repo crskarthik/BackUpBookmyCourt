@@ -193,6 +193,32 @@ class NewBookingViewController: UIViewController {
             }
         }
     }
+    @IBOutlet weak var btnBook: UIButton!
+    
+    @IBAction func check919Number(_ sender: Any) {
+        let T919Num = Txt919Number.text!
+        let decimalCharacters = CharacterSet.letters
+        let decimalRange = T919Num.rangeOfCharacter(from: decimalCharacters)
+        if decimalRange != nil {
+            print("Letters found")
+            btnBook.isEnabled = false
+        }else{
+            btnBook.isEnabled = true
+        }
+    }
+    
+    
+    @IBAction func checkPhoneNumber(_ sender: Any) {
+        let TPNum = TxtPhoneNumber.text!
+        let decimalCharacters = CharacterSet.letters
+        let decimalRange = TPNum.rangeOfCharacter(from: decimalCharacters)
+        if decimalRange != nil {
+            print("Letters found")
+            btnBook.isEnabled = false
+        }else{
+            btnBook.isEnabled = true
+        }
+    }
     
 }
 
