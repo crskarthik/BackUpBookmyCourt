@@ -60,6 +60,24 @@ class NewBookingViewController: UIViewController {
         selectedSlot.text=AppDelegate.dfetch.getAvailabilities()[AppDelegate.userSelectedAvailability].Timeslot
         dateLabel.text = AppDelegate.selectedDate
         courtLocation.text = AppDelegate.selectedCourt
+        let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
+        do{
+            let users = try AppDelegate.context.fetch(fetchRequest)
+            if !users.isEmpty && users[0].user_ID != 0
+            {
+                self.Txt919Number.text=String(users[0].user_ID)
+                self.TxtPhoneNumber.text=users[0].phoneNumber
+                self.Remember.setOn(true, animated: true)
+            }
+            else{
+                self.Txt919Number.text=""
+                self.TxtPhoneNumber.text=""
+                self.Remember.setOn(false, animated: true)
+            }
+        }
+        catch{
+            
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
