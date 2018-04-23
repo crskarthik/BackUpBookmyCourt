@@ -40,11 +40,12 @@ class NewBookingViewController: UIViewController {
         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
         do{
             let users = try AppDelegate.context.fetch(fetchRequest)
-            if !users.isEmpty && users[0].user_ID != 0
+            if !users.isEmpty && users.count > 0
             {
                 self.Txt919Number.text=String(users[0].user_ID)
                 self.TxtPhoneNumber.text=users[0].phoneNumber
                 self.Remember.setOn(true, animated: true)
+                print("ispresent")
             }
             else{
                 self.Txt919Number.text=""
@@ -63,7 +64,7 @@ class NewBookingViewController: UIViewController {
         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
         do{
             let users = try AppDelegate.context.fetch(fetchRequest)
-            if !users.isEmpty && users[0].user_ID != 0
+            if !users.isEmpty && users.count > 0
             {
                 self.Txt919Number.text=String(users[0].user_ID)
                 self.TxtPhoneNumber.text=users[0].phoneNumber
@@ -108,15 +109,15 @@ class NewBookingViewController: UIViewController {
                     userdata["AvailabilityID"]=AppDelegate.selectedSlotAvailabilityKey
                     userdata.saveInBackground(block: { (success, error) -> Void in
                         if success{
+                            self.displayOKAlert(title: "Success!", message:"Slot booked successfully on \n court: \(AppDelegate.selectedCourt) Time:  \(self.selectedSlot.text!) \n Date: \(AppDelegate.selectedDate)")
                             let updateQuery = PFQuery(className: "Availability")
                             updateQuery.getObjectInBackground(withId: AppDelegate.selectedSlotAvailabilityKey) { (object, error) -> Void in
                                 if object != nil && error == nil{
                                     object!["IsAvailable"]=false
                                     object!.saveInBackground()
-                                    self.displayOKAlert(title: "Success!", message:"Slot booked successfully on \n court: \(AppDelegate.selectedCourt) Time:  \(self.selectedSlot.text!) \n Date: \(AppDelegate.selectedDate)")
+
                                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
-                                    
-                                    self.timedNotifications(inSeconds: 15) { (success) in
+                                    self.timedNotifications(inSeconds: 10) { (success) in
                                         if success {
                                             print("Successfully Notified")
                                         }
@@ -141,9 +142,11 @@ class NewBookingViewController: UIViewController {
                                     }
                                     if self.Remember.isOn{
                                         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
+                                       
                                         do{
                                             let users = try AppDelegate.context.fetch(fetchRequest)
-                                            if users != nil && users == []{
+                                             print (users)
+                                            if users != [] || !users.isEmpty{
                                                 self.Txt919Number.text=""
                                                 self.TxtPhoneNumber.text=""
                                                 let context = AppDelegate.context
