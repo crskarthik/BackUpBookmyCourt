@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import EventKit
 import UserNotifications
+import CoreData
 
 class NewBookingViewController: UIViewController {
     
@@ -36,6 +37,17 @@ class NewBookingViewController: UIViewController {
                 print("Authorization Successfull")
             }
         }
+        let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
+        do{
+            let users = try AppDelegate.context.fetch(fetchRequest)
+            if users != nil && users != []{
+            self.Txt919Number.text=String(users[0].user_ID)
+            self.TxtPhoneNumber.text=users[0].phoneNumber
+            }
+        }
+        catch{
+            
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         selectedSlot.text=AppDelegate.dfetch.getAvailabilities()[AppDelegate.userSelectedAvailability].Timeslot
@@ -47,6 +59,7 @@ class NewBookingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBOutlet weak var Remember: UISwitch!
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         var segueFlag:Bool=true
         let T919Num = Txt919Number.text!
@@ -101,6 +114,27 @@ class NewBookingViewController: UIViewController {
                                     } else {
                                         self.createEvent(eventStore: eventStore, title: "BasketBall Game", startDate: startDate, endDate: endDate)
                                     }
+                                    if self.Remember.isOn{
+                                        let user=CoreUser(context: AppDelegate.context)
+                                        user.user_ID=Int16(Int(self.Txt919Number.text!)!)
+                                        user.phoneNumber=self.TxtPhoneNumber.text
+                                        AppDelegate.saveContext()
+                                    }
+                                    else{
+                                        let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
+                                        let includesFirst = NSPredicate(format:"user_ID contains %@ ",self.Txt919Number.text!);
+                                        let endsWithBlog = NSPredicate(format:"phoneNumber endsWith %@", self.TxtPhoneNumber.text!)
+                                        fetchRequest.predicate = NSCompoundPredicate(type:.and, subpredicates: [includesFirst, endsWithBlog] )
+                                        do{
+                                            let users = try AppDelegate.context.fetch(fetchRequest)
+                                            if users != nil && users != []{
+                                                AppDelegate.context.delete(users.first!)
+                                            }
+                                        }
+                                        catch{
+                                            
+                                        }
+                                    }
                                 }
                                 else{
                                     print("Unable to update availability")
@@ -129,6 +163,7 @@ class NewBookingViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "bookSuccess"), object: nil)
         return segueFlag
     }
+    
     
     @objc func loadList(){
         //load data here
