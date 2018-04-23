@@ -26,7 +26,7 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
         do{
             let users = try AppDelegate.context.fetch(fetchRequest)
-            if users != nil && users != []{
+            if !users.isEmpty{
                 self.Txt919TF.text=String(users[0].user_ID)
                 self.TxtPNTF.text=users[0].phoneNumber
             }
