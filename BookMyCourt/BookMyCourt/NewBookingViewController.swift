@@ -143,13 +143,8 @@ class NewBookingViewController: UIViewController {
                                         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
                                         do{
                                             let users = try AppDelegate.context.fetch(fetchRequest)
-                                            if users.isEmpty{
-                                                let user=CoreUser(context: AppDelegate.context)
-                                                user.user_ID=Int64(Int(self.Txt919Number.text!)!)
-                                                user.phoneNumber=self.TxtPhoneNumber.text
-                                                AppDelegate.saveContext()
-                                            }
-                                            else{
+                                            if users != nil && users == []{
+                                                
                                                 self.Txt919Number.text=""
                                                 self.TxtPhoneNumber.text=""
                                                 let user=CoreUser(context: AppDelegate.context)
@@ -165,6 +160,12 @@ class NewBookingViewController: UIViewController {
                                                 {
                                                     print ("There was an error")
                                                 }
+                                            }
+                                            else{
+                                                let user=CoreUser(context: AppDelegate.context)
+                                                user.user_ID=Int64(Int(self.Txt919Number.text!)!)
+                                                user.phoneNumber=self.TxtPhoneNumber.text
+                                                AppDelegate.saveContext()
                                             }
                                         }
                                         catch{
