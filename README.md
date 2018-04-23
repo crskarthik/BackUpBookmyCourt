@@ -17,6 +17,28 @@ A Mobile Application through which students can reserve the basketball court in 
 - User receives push notification after completion of a reservation – <b>Completed</b>
 - Available courts needs to be refreshed every week - <b>In Progress</b>
 - Testing – <b>Completed</b>
+## Screenshots
+![Launch](assets/1.png)![Home](assets/2.png)
+![NewBooking](assets/3.png)![Calender access](assets/4.png)
+![success Booking](assets/5.png)![calender](assets/8.png)
+
+## Description of Persistent Data
+- We used Back4App as MBaaS provider.
+- Linked App to Parse Framework.
+- Used Parse Library to perform CRUD operations on the cloud storage using noSQL database.
+## API/Library
+We have used API and Libraries that are part of the course material.
+## Problems Faced
+- Tried to implement Pointers concept in parse for implementing relational behavior.
+- Unable to load data into Table view without user intervention.
+## Future Improvements
+- Extending these functionalities to other sports.
+- Implementing an online chat with the facility provider.
+- Providing a flexibility share the reservation information to other users.
+
+
+
+
 
 
 
