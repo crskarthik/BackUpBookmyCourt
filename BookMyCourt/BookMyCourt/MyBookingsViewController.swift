@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 import CoreData
+import EventKit
+
 class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     var bookings:[String] = ["Date 03/15/2018 14:30 Right court","Date 04/12/2018 13:30 Left court","Date 05/15/2018 9:30 Centre court"]
@@ -123,7 +125,7 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
                     self.userBookingsTV.reloadData()
                     self.ViewBookingsBTNAction(UIButton.self)
-                    var que1:PFQuery = PFQuery(className: "Availability")
+                    let que1:PFQuery = PFQuery(className: "Availability")
                     var cou=AppDelegate.dfetch.users[indexPath.row].Court
                     print()
                     que1.whereKey("objectId", equalTo: AppDelegate.dfetch.users[indexPath.row].AvailabilityID)
@@ -139,6 +141,36 @@ class MyBookingsViewController: UIViewController,UITableViewDataSource,UITableVi
                     
                 }
             })
+            
+            // This lists every reminder
+            let eventStore : EKEventStore = EKEventStore()
+            let predicate = eventStore.predicateForReminders(in: [])
+            eventStore.fetchReminders(matching: predicate) { reminders in
+                for reminder in reminders! {
+                    print(reminder.title)
+                }}
+            
+            
+            // What about Calendar entries?
+            let startDate=NSDate().addingTimeInterval(-60*60*24)
+            let endDate=NSDate().addingTimeInterval(60*60*24*3)
+            let predicate2 = eventStore.predicateForEvents(withStart: startDate as Date, end: endDate as Date, calendars: nil)
+            
+            print("startDate:\(startDate) endDate:\(endDate)")
+            let eV = eventStore.events(matching: predicate2) as [EKEvent]!
+            
+            if eV != nil {
+                for i in eV! {
+                    print("Title  \(i.title)" )
+                    print("stareDate: \(i.startDate)" )
+                    print("endDate: \(i.endDate)" )                    
+                    do{
+                        (try eventStore.remove(i, span: EKSpan.thisEvent, commit: true))
+                    }
+                    catch _ {
+                    }
+                }
+            }
             
             self.displayOKAlert(title: "Success!",message:"Delete successful")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "delete"), object: nil)
