@@ -43,6 +43,7 @@ class NewBookingViewController: UIViewController {
             if users != nil && users != []{
             self.Txt919Number.text=String(users[0].user_ID)
             self.TxtPhoneNumber.text=users[0].phoneNumber
+                self.Remember.setOn(true, animated: true)
             }
         }
         catch{
@@ -68,10 +69,10 @@ class NewBookingViewController: UIViewController {
             if(Txt919Number.text!.count>0&&TxtPhoneNumber.text!.count>0){
                 AppDelegate.user919=Int(T919Num)!
                 AppDelegate.userPN=TxtPN
-                if(!(Txt919Number.text?.isEmpty)! || T919Num.prefix(3) != "919" || T919Num.count != 9){
+                if((Txt919Number.text?.isEmpty)! || T919Num.prefix(3) != "919" || T919Num.count != 9){
                     self.displayOKAlert(title: "Error!", message:"Invalid 919 Number")
                 }
-                else if(!(TxtPhoneNumber.text?.isEmpty)! || TxtPN.count != 10){
+                else if((TxtPhoneNumber.text?.isEmpty)! || TxtPN.count != 10){
                     self.displayOKAlert(title: "Error!", message:"Invalid Phone Number")
                 }
                 else{
@@ -116,7 +117,7 @@ class NewBookingViewController: UIViewController {
                                     }
                                     if self.Remember.isOn{
                                         let user=CoreUser(context: AppDelegate.context)
-                                        user.user_ID=Int16(Int(self.Txt919Number.text!)!)
+                                        user.user_ID=Int64(Int(self.Txt919Number.text!)!)
                                         user.phoneNumber=self.TxtPhoneNumber.text
                                         AppDelegate.saveContext()
                                     }

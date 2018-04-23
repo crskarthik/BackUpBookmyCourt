@@ -17,7 +17,7 @@ extension CoreUser {
         return NSFetchRequest<CoreUser>(entityName: "CoreUser")
     }
 
-    @NSManaged public var user_ID: Int16
+    @NSManaged public var user_ID: Int64
     @NSManaged public var phoneNumber: String?
 
 }

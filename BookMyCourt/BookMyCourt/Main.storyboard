@@ -285,7 +285,7 @@
                                     <action selector="checkPhoneNumber:" destination="8rJ-Kc-sve" eventType="editingChanged" id="kG9-uX-4TG"/>
                                 </connections>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZeU-H7-Hka">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZeU-H7-Hka">
                                 <rect key="frame" x="193" y="380" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
@@ -424,6 +424,6 @@
         <image name="icons8-plus-24" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kt6-YR-hPm"/>
+        <segue reference="R71-IN-irG"/>
     </inferredMetricsTieBreakers>
 </document>
