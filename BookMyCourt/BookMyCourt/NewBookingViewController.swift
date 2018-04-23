@@ -116,10 +116,23 @@ class NewBookingViewController: UIViewController {
                                         self.createEvent(eventStore: eventStore, title: "BasketBall Game", startDate: startDate, endDate: endDate)
                                     }
                                     if self.Remember.isOn{
-                                        let user=CoreUser(context: AppDelegate.context)
-                                        user.user_ID=Int64(Int(self.Txt919Number.text!)!)
-                                        user.phoneNumber=self.TxtPhoneNumber.text
-                                        AppDelegate.saveContext()
+                                        let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
+                                        do{
+                                            let users = try AppDelegate.context.fetch(fetchRequest)
+                                            if users != nil && users != []{
+                                                
+                                            }
+                                            else{
+                                                let user=CoreUser(context: AppDelegate.context)
+                                                user.user_ID=Int64(Int(self.Txt919Number.text!)!)
+                                                user.phoneNumber=self.TxtPhoneNumber.text
+                                                AppDelegate.saveContext()
+                                            }
+                                        }
+                                        catch{
+                                            
+                                        }
+                                        
                                     }
                                     else{
                                         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
