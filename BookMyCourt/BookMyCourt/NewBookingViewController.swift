@@ -55,10 +55,10 @@ class NewBookingViewController: UIViewController {
             if(Txt919Number.text!.count>0&&TxtPhoneNumber.text!.count>0){
                 AppDelegate.user919=Int(T919Num)!
                 AppDelegate.userPN=TxtPN
-                if(T919Num.prefix(3) != "919" || T919Num.count != 9){
+                if(!(Txt919Number.text?.isEmpty)! || T919Num.prefix(3) != "919" || T919Num.count != 9){
                     self.displayOKAlert(title: "Error!", message:"Invalid 919 Number")
                 }
-                else if(TxtPN.count != 10){
+                else if(!(TxtPhoneNumber.text?.isEmpty)! || TxtPN.count != 10){
                     self.displayOKAlert(title: "Error!", message:"Invalid Phone Number")
                 }
                 else{
@@ -141,8 +141,10 @@ class NewBookingViewController: UIViewController {
     func displayOKAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        AppDelegate.user919=Int(Txt919Number.text!)!
-        AppDelegate.userPN=TxtPhoneNumber.text!
+        if(!((TxtPhoneNumber.text?.isEmpty)!) || !((Txt919Number.text?.isEmpty)!)){
+            AppDelegate.user919=Int(Txt919Number.text!)!
+            AppDelegate.userPN=TxtPhoneNumber.text!
+        }
         self.present(alert, animated: true)
     }
     

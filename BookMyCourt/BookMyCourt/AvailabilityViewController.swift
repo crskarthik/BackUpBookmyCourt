@@ -16,12 +16,19 @@ class AvailabilityViewController:  UIViewController,UITableViewDataSource,UITabl
         return AppDelegate.dfetch.getAvailabilities().count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "availabilityList")!
         cell.textLabel?.text=AppDelegate.dfetch.getAvailabilities()[indexPath.row].Timeslot
         cell.detailTextLabel?.text=AppDelegate.dfetch.getAvailabilities()[indexPath.row].Court
         if indexPath.row == AppDelegate.dfetch.getAvailabilities().count{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        }
+        if(indexPath.row % 2 == 0){
+            cell.backgroundColor = UIColor.white
+        }
+        else{
+            cell.backgroundColor = UIColor.lightGray
         }
         return cell
     }
@@ -80,7 +87,7 @@ class AvailabilityViewController:  UIViewController,UITableViewDataSource,UITabl
         AppDelegate.dfetch.loadAvailabilityData(SelectedDate: AppDelegate.selectedDate)
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         DispatchQueue.main.async {
-        self.courtsAvailabilityTV.reloadData()
+            self.courtsAvailabilityTV.reloadData()
         }
         self.courtsAvailabilityTV.setNeedsDisplay()
     }
