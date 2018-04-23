@@ -42,14 +42,14 @@ class NewBookingViewController: UIViewController {
             let users = try AppDelegate.context.fetch(fetchRequest)
             if !users.isEmpty && users[0].user_ID != 0
             {
-            self.Txt919Number.text=String(users[0].user_ID)
-            self.TxtPhoneNumber.text=users[0].phoneNumber
+                self.Txt919Number.text=String(users[0].user_ID)
+                self.TxtPhoneNumber.text=users[0].phoneNumber
                 self.Remember.setOn(true, animated: true)
             }
             else{
-              self.Txt919Number.text=""
-              self.TxtPhoneNumber.text=""
-              self.Remember.setOn(false, animated: true)
+                self.Txt919Number.text=""
+                self.TxtPhoneNumber.text=""
+                self.Remember.setOn(false, animated: true)
             }
         }
         catch{
@@ -144,7 +144,6 @@ class NewBookingViewController: UIViewController {
                                         do{
                                             let users = try AppDelegate.context.fetch(fetchRequest)
                                             if users != nil && users == []{
-                                                
                                                 self.Txt919Number.text=""
                                                 self.TxtPhoneNumber.text=""
                                                 let user=CoreUser(context: AppDelegate.context)
@@ -295,6 +294,8 @@ class NewBookingViewController: UIViewController {
             print("Letters found")
             btnBook.isEnabled = false
             btnBook.titleLabel?.textColor = UIColor.white
+            LblMessage.text = "Please enter appropriate 919 number"
+            LblMessage.text = ""
         }else{
             btnBook.isEnabled = true
         }
@@ -309,8 +310,10 @@ class NewBookingViewController: UIViewController {
             print("Letters found")
             btnBook.isEnabled = false
             btnBook.titleLabel?.textColor = UIColor.white
+            LblMessage.text = "Please enter appropriate phone number"
         }else{
             btnBook.isEnabled = true
+            LblMessage.text = ""
         }
     }
     
