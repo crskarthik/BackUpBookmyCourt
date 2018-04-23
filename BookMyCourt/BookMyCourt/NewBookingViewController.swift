@@ -126,7 +126,21 @@ class NewBookingViewController: UIViewController {
                                                 AppDelegate.saveContext()
                                             }
                                             else{
-                                                
+                                                self.Txt919Number.text=""
+                                                self.TxtPhoneNumber.text=""
+                                                let user=CoreUser(context: AppDelegate.context)
+                                                let context = AppDelegate.context
+                                                let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CoreUser")
+                                                let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+                                                do
+                                                {
+                                                    try context.execute(deleteRequest)
+                                                    try context.save()
+                                                }
+                                                catch
+                                                {
+                                                    print ("There was an error")
+                                                }
                                             }
                                         }
                                         catch{
@@ -135,6 +149,8 @@ class NewBookingViewController: UIViewController {
                                         
                                     }
                                     else{
+                                        self.Txt919Number.text=""
+                                        self.TxtPhoneNumber.text=""
                                         let fetchRequest:NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
                                         let includesFirst = NSPredicate(format:"user_ID contains %@ ",self.Txt919Number.text!);
                                         let endsWithBlog = NSPredicate(format:"phoneNumber endsWith %@", self.TxtPhoneNumber.text!)
