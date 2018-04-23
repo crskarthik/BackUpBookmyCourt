@@ -26,8 +26,8 @@
 		73BEE1952037952F00136CF1 /* MyBookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE1942037952F00136CF1 /* MyBookingsViewController.swift */; };
 		73BEE1972037957200136CF1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE1962037957200136CF1 /* SettingsViewController.swift */; };
 		73DE1298208D6653007A791A /* CoreModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73DE1296208D6653007A791A /* CoreModel.xcdatamodeld */; };
-		73DE12C6208D7507007A791A /* CoreUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DE12C4208D7507007A791A /* CoreUser+CoreDataClass.swift */; };
-		73DE12C7208D7507007A791A /* CoreUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DE12C5208D7507007A791A /* CoreUser+CoreDataProperties.swift */; };
+		73DE12CA208D7EFF007A791A /* CoreUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DE12C8208D7EFF007A791A /* CoreUser+CoreDataClass.swift */; };
+		73DE12CB208D7EFF007A791A /* CoreUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DE12C9208D7EFF007A791A /* CoreUser+CoreDataProperties.swift */; };
 		7946F72B2072FEFC00E3C9F8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7946F7292072FEFC00E3C9F8 /* Parse.framework */; };
 		7946F72C2072FEFC00E3C9F8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7946F72A2072FEFC00E3C9F8 /* Bolts.framework */; };
 		7946F72F2073080400E3C9F8 /* Sawyers Whitewash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */; };
@@ -83,8 +83,8 @@
 		73BEE1942037952F00136CF1 /* MyBookingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingsViewController.swift; sourceTree = "<group>"; };
 		73BEE1962037957200136CF1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		73DE1297208D6653007A791A /* CoreModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreModel.xcdatamodel; sourceTree = "<group>"; };
-		73DE12C4208D7507007A791A /* CoreUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreUser+CoreDataClass.swift"; sourceTree = "<group>"; };
-		73DE12C5208D7507007A791A /* CoreUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		73DE12C8208D7EFF007A791A /* CoreUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		73DE12C9208D7EFF007A791A /* CoreUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7946F7292072FEFC00E3C9F8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		7946F72A2072FEFC00E3C9F8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sawyers Whitewash.otf"; sourceTree = "<group>"; };
@@ -147,10 +147,10 @@
 		3F563F3420378DAD009F8807 /* BookMyCourt */ = {
 			isa = PBXGroup;
 			children = (
-				73DE12C4208D7507007A791A /* CoreUser+CoreDataClass.swift */,
-				73DE12C5208D7507007A791A /* CoreUser+CoreDataProperties.swift */,
 				3F9D26BB2053914500B28002 /* Models */,
 				3F563F3520378DAD009F8807 /* AppDelegate.swift */,
+				73DE12C8208D7EFF007A791A /* CoreUser+CoreDataClass.swift */,
+				73DE12C9208D7EFF007A791A /* CoreUser+CoreDataProperties.swift */,
 				73DE1296208D6653007A791A /* CoreModel.xcdatamodeld */,
 				7946F72D2073080400E3C9F8 /* Sawyers Whitewash.otf */,
 				3F563F3720378DAD009F8807 /* AvailabilityViewController.swift */,
@@ -359,11 +359,11 @@
 				3F563F3A20378DAD009F8807 /* NewBookingViewController.swift in Sources */,
 				797198512086E55100B59F64 /* UsersModel.swift in Sources */,
 				3F9D26C32053949800B28002 /* AvailabilityModel.swift in Sources */,
-				73DE12C7208D7507007A791A /* CoreUser+CoreDataProperties.swift in Sources */,
+				73DE12CB208D7EFF007A791A /* CoreUser+CoreDataProperties.swift in Sources */,
 				3F563F3620378DAD009F8807 /* AppDelegate.swift in Sources */,
 				797198532086E68A00B59F64 /* AvailabilityModel1.swift in Sources */,
 				73BEE1952037952F00136CF1 /* MyBookingsViewController.swift in Sources */,
-				73DE12C6208D7507007A791A /* CoreUser+CoreDataClass.swift in Sources */,
+				73DE12CA208D7EFF007A791A /* CoreUser+CoreDataClass.swift in Sources */,
 				73BEE1972037957200136CF1 /* SettingsViewController.swift in Sources */,
 				73ACD9DE20858B0100D33C0E /* DataFetch.swift in Sources */,
 				3F9D26C12053948200B28002 /* CourtModel.swift in Sources */,
