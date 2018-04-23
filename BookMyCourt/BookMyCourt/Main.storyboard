@@ -356,6 +356,7 @@
                     <tabBarItem key="tabBarItem" title="NewBooking" image="icons8-plus-24" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="LblMessage" destination="C7S-Kg-Hp7" id="wSv-ry-ftF"/>
+                        <outlet property="Remember" destination="ZeU-H7-Hka" id="FIx-QT-uSt"/>
                         <outlet property="Txt919Number" destination="k6i-WG-3t7" id="wuW-Ts-Xij"/>
                         <outlet property="TxtPhoneNumber" destination="Dis-02-Xd7" id="IwA-JA-sNX"/>
                         <outlet property="courtLocation" destination="psH-Qg-RB8" id="5xd-8S-KRM"/>
