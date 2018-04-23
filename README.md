@@ -2,7 +2,7 @@
 iOS Team Rangnarok
 -Revanth, Ashok, Srikar Karthik
 ## Authors
-![profiles](assets/picture1.png)
+![profiles](assets/Picture1.png)
 <br>
 ## Introduction
 Students in NWMSU have no flexibility to reserve a court in Recreation center online or through mobile app.
