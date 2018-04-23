@@ -204,6 +204,7 @@ class NewBookingViewController: UIViewController {
         if decimalRange != nil {
             print("Letters found")
             btnBook.isEnabled = false
+            btnBook.titleLabel?.textColor = UIColor.white
         }else{
             btnBook.isEnabled = true
         }
@@ -217,6 +218,7 @@ class NewBookingViewController: UIViewController {
         if decimalRange != nil {
             print("Letters found")
             btnBook.isEnabled = false
+            btnBook.titleLabel?.textColor = UIColor.white
         }else{
             btnBook.isEnabled = true
         }

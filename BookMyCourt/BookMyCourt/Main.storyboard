@@ -99,6 +99,7 @@
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="R66-t9-fpW">
                                 <rect key="frame" x="61" y="73" width="252" height="195"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <date key="date" timeIntervalSinceReferenceDate="545846540.71701896">
                                     <!--2018-04-19 16:02:20 +0000-->
                                 </date>
